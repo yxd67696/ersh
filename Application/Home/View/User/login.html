@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=8" />
+<title>登录 - 舒家365</title>
+<link href="css/style_1.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<div class="page-top">
+    <div class="w1190">
+        <table class="topMenu">
+            <tbody>
+            <tr>
+            <td id="JS_head_login" class="login">
+                <span>您好，欢迎来舒家365！</span><em class="line"></em>
+                <a href="/e/member/login" title="登录舒适365">登录</a><em class="line"></em>
+                <a href="/e/member/register/index.php?tobind=0&groupid=1&button=下一步" title="免费注册舒家365帐号">注册</a></td>
+                <td><em class="line"></em></td>
+
+
+                <td><a href="/zhaoshangjiameng/" target="_blank" title="舒适365">招商加盟</a></td>
+                <td><em class="line"></em></td>
+                <td style="width:200px;position:relative;z-index:100;">
+                    服务热线：<span class="hotLine">400-880-8052</span></td>
+              
+            </tr></tbody></table>
+    </div>
+</div>
+  
+ 
+  
+  
+  <div class="headerrr">
+          
+          <div class="header_center">
+                  <div class="header_center_container">
+                           <span class="hcc_logo">
+                                <a href="/" class="logo">舒家365</a>
+                           </span>
+                           <span class="hcc_title">欢迎登录</span>
+                  </div>
+          </div>
+  </div>
+<div class="model-outer of">   
+    <div class="login_img fl"><img src="picture/zcdl_img.jpg" width="390" height="310" alt="美好生活从这里开始"></div>
+    <div class="user-log fr">
+            <p class="tit">
+                <span class="tit-span">还没有帐号？
+                    <a href="/e/member/register/?groupid=1" class="tit-span-a">马上注册</a>
+                </span>用户登录
+            </p>
+<form method="post" action="/e/member/doaction.php" onsubmit="return save_username();" id="myform" name="myform"  class="login_main">
+	<input type="hidden" name="enews" value="login">
+	<input type=hidden name=ecmsfrom value="/e/member/cp">
+	<div><input type="text" id="username" name="username" onBlur="if(this.value=='')value='用户名/邮箱';" onFocus="if(this.value=='用户名/邮箱')value='';" value="用户名/邮箱" class="web-input web-input-1 ID" maxlength="50"/></div>
+    <div><input type="password" id="password" name="password" class="web-input PWD" maxlength="16"/></div>
+			            <input type="checkbox" name="lifetime" value="2592000" id="lifetime"  class="pwd-rembmber fl" checked>
+            <span class="pwd-rembmber-text fl">自动登录</span>
+			            <a href="/e/member/GetPassword/" class="forget fr" target="_blank">忘记密码？</a>
+			 <input type="submit" name="dosubmit" class="log-in fl tc" value="登            录"/>
+        </form>		
+        <p class="coper-log-text fl"><br />使用合作帐号登录：</p>
+        <div class="coper-log fl">
+            <a onclick="MM_openBrWindow('/e/member/qq_api/enews.php?enews=qzonelogin','','width=550,height=380')" href="javascript:void(0);" target="_self" border="0" height="380" width="550" title="使用QQ登录">
+                <img src="picture/qq.png" class="qq" alt="使用QQ登录" title="使用QQ登录"/>
+                <span class="qq-span">QQ帐号</span>
+                 
+         
+        </div>
+    </div>
+</div>
+  <script language="JavaScript">function MM_openBrWindow(theURL,winName,features) {window.open(theURL,winName,features);}</script>
+<div class="footer-box">
+   <div class="footer-icon">
+      <div class="iconMap">
+	 
+		<a href="/e/DoInfo/AddInfo.php?classid=2&mid=8&ecmscheck=1" target="_blank"><p><img class="ic6" src="picture/blank.gif" alt="正品保障" height="50" width="60"></p><p class="icon-title">免费定制</p><p class="icon-desc">针对性定制舒适方案</p></a>
+		<a href="/zhongyangkongdiao/" target="_blank"><p><img class="ic3" src="picture/blank.gif" alt="正品保障" height="50" width="60"></p><p class="icon-title">集成方案</p><p class="icon-desc">多系统集成化设计</p></a>
+		<a href="/gongchenganli/" target="_blank"><p><img class="ic1" src="picture/blank.gif" alt="正品保障" height="50" width="60"></p><p class="icon-title">规范施工</p><p class="icon-desc">高标准施工规范</p></a>
+		<a href="#" target="_blank"><p><img class="ic4" src="picture/blank.gif" alt="正品保障" height="50" width="60"></p><p class="icon-title">工程联保</p><p class="icon-desc">设备工程全国联保</p></a>
+		<a href="#" target="_blank"><p><img class="ic2" src="picture/blank.gif" alt="正品保障" height="50" width="60"></p><p class="icon-title">持续维护</p><p class="icon-desc">维护升级持续关注</p></a>
+		<a href="/gongchenganli/" target="_blank"><p><img class="ic7" src="picture/blank.gif" alt="正品保障" height="50" width="60"></p><p class="icon-title">万千工程</p><p class="icon-desc">万千工程口口相传</p></a>
+		<a href="#" target="_blank"><p><img class="ic8" src="picture/blank.gif" alt="正品保障" height="50" width="60"></p><p class="icon-title">用心打造</p><p class="icon-desc">用心打造良心工程</p></a>
+		</div></div></div>
+		
+	<div class="footer-box2">
+	   <div class="footer-copy">
+	     <a href="/redianzixun/" target="_blank">资讯中心</a> | 
+             <a href="/tags" target="_blank" title="标签大全">标签大全</a> | 
+	     <a href="/about/" target="_blank" >关于我们</a> | 
+		 <a href="/lianxiwomen/" target="_blank">联系我们</a> |
+		 <a href="/quanguo/"  target="_blank" >全国服务中心</a>|
+		 <a href="/zhaoshangjiameng/"  target="_blank" >招商加盟</a>
+		 
+		 <br><span class="yen"> Copyright©2009-2016  ShuJia365 舒家365网  版权所有</span>
+		 </div>
+ 
+</div>
+
+ 
+</body>
+</html>
+

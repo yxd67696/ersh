@@ -1,0 +1,15 @@
+﻿@charset "utf-8";
+#zxxBlank{position:absolute;z-index:2000;left:0;top:0;width:100%;height:0;background:black;}
+.wrap_out {border: 5px solid #b0b0b0; background-color: #FFF; position: absolute; z-index: 2000; width: auto; height: auto; border-radius: 3px; -moz-border-radius: 3px; -webkit-border-radius: 3px;}
+.wrap_in{}
+.wrap_bar {width: 100%; background: #2a7dc3; height: 28px; font-size: 12px;}
+.wrap_title{font-weight:bold;}
+.wrap_title span{position:relative;margin-left:5px;cursor:text; color:#fff; top:5px}
+.wrap_body{display:inline-block;background:white;overflow:hidden;}
+.wrap_close{margin-top:-10px;margin-right:6px;color:#fff;font-weight:bold;font-family:Tahoma;text-decoration:none;cursor:pointer;float:right; border:1px solid #fff; line-height:10px; padding:1px;}
+.wrap_close:hover{text-decoration:none;color:#f30;}
+.wrap_remind{margin: 23px 0 17px 36px; width:16em;padding:13px 51px;background:url("../images/rig.gif") no-repeat;}
+.wrap_remind p{margin:10px 0 0;}
+.submit_btn{margin-top:15px;width:83px;height:40px;background:url(../images/bg_bt.gif) no-repeat -1px -1px;border:none;color:#fff;font-weight:bold;font-size:14px;margin-left:34px}
+.submit_btn:hover{text-decoration:none;color:#fff;}
+.cancel_btn{display:inline-block;padding:3px 12px 1.99px;background:#eee;border:1px solid;border-color:#f0f0f0 #bbb #bbb #f0f0f0;color:#333;line-height:16px;cursor:pointer;overflow:visible;}

@@ -1,0 +1,133 @@
+﻿ 
+.side-pannel {
+	position: fixed;
+	right:0;
+	z-index: 99
+}
+.side-bar {
+ 
+	bottom: 100px;
+	background: #a3aab2 ;
+}
+.side-bar a {
+	display: block;
+	cursor: pointer;
+	width: 70px;
+	height: 40px;
+	border-bottom: 1px solid #bbbfc2;
+	position: relative;
+	color: #fff;
+	text-align: center
+}
+.side-bar a:hover{
+text-decoration:none;
+color:#fff;
+ }
+.side-bar a s {
+	display: block;
+	margin-left: auto;
+	margin-right: auto
+}
+ 
+.side-bar a span {
+	line-height: 20px
+}
+
+.side-bar a.gotop s {
+	position: absolute;
+	top: 25%;
+	left: 17px
+}
+.side-bar a.qr {
+	padding-top: 25px
+}
+.side-bar a.text {
+	padding-top: 25px
+}
+.side-bar a.gotop {
+	padding-top: 25px;
+	border-bottom:none;
+}
+.side-bar a.s {
+	position: absolute;
+	top: 50%;
+	left: 18px
+}
+.side-bar a:hover{
+background:#01af63;}
+.side-bar a.qr i {
+	background-position: 0 0;
+    display: none;
+    height: 66px;
+    left: -200px;
+    margin-top: -33px;
+    position: absolute;
+    top: 50%;
+    width: 200px;
+}
+.side-bar a.qr:hover i {
+	display: block
+}
+.side-bar a.qr i {
+	background-image: url(../images/weixin.png)
+}
+ 
+
+.g-icon-top {
+	height: 20px;
+	width: 35px;
+	margin-top: -10px;
+	background-image: url(../images/hddb.png)
+}
+.g-icon-survey1 {
+	height: 36px;
+    margin-top: -16px;
+    width: 36px;
+	background-image: url(../images/qq.png);
+}
+.side-bar a.survey:hover s {
+	height: 36px;
+	width: 36px;
+ 
+	
+}
+.g-icon-qq1 {
+	height: 20px;
+	width: 22px;
+	margin-top: -10px;
+	background-position: -35px -33px
+}
+.g-icon-weibo1 {
+	height: 36px;
+	width: 36px;
+	margin-top: -16px;
+background-image: url(../images/sjcz.png)
+}
+ 
+.g-icon-qr1 {
+	height: 36px;
+	width: 36px;
+	margin-top: -16px;
+    background-image: url(../images/zxtel.png);
+ 
+}
+ 
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 

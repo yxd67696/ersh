@@ -1,0 +1,4 @@
+ 
+/*floatNav*/
+(function($){$.fn.floatNav=function(c){if(!this.length){return}var d=$.extend({start:null,end:null,fixedClass:"nav-fixed",anchor:null,targetEle:null,range:0},c);var g=$(this),h=g.height(),f=g.width(),b=$('<div class="float-nav-wrap"/>');g.css({height:h,width:f});if(!g.parent().hasClass("float-nav-wrap")){g.wrap(b.css("height",h))}$(window).bind("scroll",function(){var j=$(document).scrollTop(),l=g.find("a").eq(0).attr("href"),n=d.start||g.parent(".float-nav-wrap").offset().top,m=d.targetEle?$(d.targetEle).offset().top:10000;if(j>n&&j<(d.end||m)-d.range){g.addClass(d.fixedClass);if(d.anchor&&l!==d.anchor){g.find("a").attr("href",d.anchor)}}else{g.removeClass(d.fixedClass);if(d.anchor){g.find("a").attr("href","javascript:;")}}});return this}})(jQuery);
+ 

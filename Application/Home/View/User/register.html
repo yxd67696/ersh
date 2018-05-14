@@ -1,0 +1,178 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=8" />
+<title>注册-舒家365</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link href="css/style_1.css" type="text/css" rel="stylesheet"/>
+<script type="text/javascript" src="js/jquery.1.4.2.js"></script>
+<script type="text/javascript" src="js/formvalidator1.js"></script>
+<script type="text/javascript" src="js/formvalidatorregex.js"></script>
+<script type="text/javascript" src="js/dialog.js"></script>
+</head>
+<body>
+<div class="page-top">
+    <div class="w1190">
+        <table class="topMenu">
+            <tbody>
+            <tr>
+            <td id="JS_head_login" class="login">
+                <span>您好，欢迎来舒家365！</span><em class="line"></em>
+                <a href="/e/member/login" title="登录舒适365" rel="nofollow">登录</a><em class="line"></em>
+                <a href="/e/member/register/index.php?tobind=0&groupid=1&button=下一步" title="免费注册舒家365帐号" rel="nofollow">注册</a></td>
+                <td><em class="line"></em></td>
+               <td><a href="/zhaoshangjiameng/" target="_blank" title="舒适365" rel="nofollow">招商加盟</a></td>
+                <td><em class="line"></em></td>
+                <td style="width:200px;position:relative;z-index:100;">
+                    服务热线：<span class="hotLine">400-880-8052</span></td>
+              
+            </tr></tbody></table>
+    </div>
+</div>
+  
+ 
+  
+  
+  <div class="headerrr">
+          
+          <div class="header_center">
+                  <div class="header_center_container">
+                           <span class="hcc_logo">
+                                <a href="/" class="logo">舒家365网</a>
+                           </span>
+                           <span class="hcc_title">欢迎注册</span>
+                  </div>
+          </div>
+  </div>
+<div class="model-outer of">   
+ <div class="login_img fl">
+<img width="390" height="310" alt="美好生活从这里开始" src="picture/zcdl_img.jpg">
+</div>
+<div class="line fl of"></div>
+    <div class="rightside">
+<form method="post" action="/e/member/doaction.php" id="myform">
+	<input type="hidden" name="enews" value="register">
+	<input type="hidden" name="siteid" value="1" />
+	<input type="hidden" name="ecmsfrom" id="forward" value="/e/member/login" />
+        
+		<div class="reg-info-box">
+		 <li>
+        <label>用户名：</label><input type="text" id="username" name="username"/>
+        
+		</li><li>
+		<label>密   码：</label> <input type="password" id="password" name="password" />
+     
+		</li><li>
+          <label>重复密码：</label><input type="password" name="repassword" id="repassword"  />
+       
+		</li><li>		 
+		 <label>邮箱：</label><input type="text" type="text" id="email" name="email" />
+         <p class="correct" id="emailTip"></p>
+		</li>
+		
+		</div>
+        <p class="service">
+		  <input type="checkbox" name="protocol" id="protocol" class="agreement fl" checked />我已经阅读并接受
+          <a href="javascript:void(0);" onclick="show_protocol();return false;" class="jcode-a" title="点击阅读协议">《服务使用协议》</a>
+        </p>
+		 <input type="submit" name="dosubmit" class="leftside-a tc" style="margin-left:100px;" value="提交注册"/>
+		</form>	
+        <div class="ifhas of">
+            <p class="ifhas-detail fl tc">已有帐号</p>
+            <a href="/e/member/login/?forward=" class="ifhas-bind fl tc">立即登录</a>
+        </div>
+    </div>
+    <div class="line fl of"></div>
+</div>
+<script language="JavaScript">
+$(function(){
+	$.formValidator.initConfig({autotip:true,formid:"myform",onerror:function(msg){}});
+
+	$("#username").formValidator({onshow:"*用户名为-位中文、半角字符（字符、数字、符号）组成，区别大小写"}).inputValidator({min:,max:,onerror:"*用户名为-位中文、半角字符（字符、数字、符号）组成，区别大小写"}).regexValidator({regexp:"ps_username",datatype:"enum",onerror:"用户名格式错误"}).ajaxValidator({
+	    type : "get",
+		url : "",
+		data :"m=reg&a=checkname",
+		datatype : "html",
+		async:'false',
+		success : function(data){
+            if( data == "1" ) {
+                return true;
+			} else {
+                return false;
+			}
+		},
+		buttons: $("#dosubmit"),
+		onerror : "禁止注册或用户已存在。",
+		onwait : "请稍候..."
+	});
+	
+	$("#password").formValidator({onshow:"*密码为-位半角字符（字符、数字、符号）组成，区别大小写"}).inputValidator({min:,max:,onerror:"*密码为-位半角字符（字符、数字、符号）组成，区别大小写"});
+	$("#repassword").formValidator({onshow:"*请输入确认密码",oncorrect:"密码输入一致"}).compareValidator({desid:"password",operateor:"=",onerror:"请输入两次密码不同。"});
+	$("#email").formValidator({onshow:"*请输入常用的真实邮箱，密码丢失,礼包领取时需要使用",oncorrect:"邮箱格式正确"}).inputValidator({min:5,max:32,onerror:"邮箱应该为5-32位之间"}).regexValidator({regexp:"email",datatype:"enum",onerror:"邮箱格式错误"}).ajaxValidator({
+	    type : "get",
+		url : "",
+		data :"m=reg&a=checkemail",
+		datatype : "html",
+		async:'false',
+		success : function(data){	
+            if( data == "1" ) {
+                return true;
+			} else {
+                return false;
+			}
+		},
+		buttons: $("#dosubmit"),
+		onerror : "禁止注册或邮箱已存在",
+		onwait : "请稍候..."
+	});
+	});
+
+function show_protocol() {
+	art.dialog({lock:false,title:'会员注册协议',id:'protocoliframe', iframe:'/style/protocol.html',width:'500',height:'310',yesText:'同意'}, function(){
+		$("#protocol").attr("checked",true);
+	});
+}
+
+function changeAuthCode() {
+	var num = 	new Date().getTime();
+	var rand = Math.round(Math.random() * 10000);
+	num = num + rand;
+	$('#ver_code').css('visibility','visible');
+	if ($("#code_img")[0]) {
+		$("#code_img")[0].src = "../../ShowKey/?v=reg" + num;
+	}
+	return false;	
+}
+</script>
+<div class="footer-box">
+   <div class="footer-icon">
+      <div class="iconMap">
+	 
+		<a href="/e/DoInfo/AddInfo.php?classid=2&mid=8&ecmscheck=1" target="_blank"><p><img class="ic6" src="picture/blank.gif" alt="正品保障" height="50" width="60"></p><p class="icon-title">免费定制</p><p class="icon-desc">针对性定制舒适方案</p></a>
+		<a href="/zhongyangkongdiao/" target="_blank"><p><img class="ic3" src="picture/blank.gif" alt="正品保障" height="50" width="60"></p><p class="icon-title">集成方案</p><p class="icon-desc">多系统集成化设计</p></a>
+		<a href="/gongchenganli/" target="_blank"><p><img class="ic1" src="picture/blank.gif" alt="正品保障" height="50" width="60"></p><p class="icon-title">规范施工</p><p class="icon-desc">高标准施工规范</p></a>
+		<a href="#" target="_blank"><p><img class="ic4" src="picture/blank.gif" alt="正品保障" height="50" width="60"></p><p class="icon-title">工程联保</p><p class="icon-desc">设备工程全国联保</p></a>
+		<a href="#" target="_blank"><p><img class="ic2" src="picture/blank.gif" alt="正品保障" height="50" width="60"></p><p class="icon-title">持续维护</p><p class="icon-desc">维护升级持续关注</p></a>
+		<a href="/gongchenganli/" target="_blank"><p><img class="ic7" src="picture/blank.gif" alt="正品保障" height="50" width="60"></p><p class="icon-title">万千工程</p><p class="icon-desc">万千工程口口相传</p></a>
+		<a href="#" target="_blank"><p><img class="ic8" src="picture/blank.gif" alt="正品保障" height="50" width="60"></p><p class="icon-title">用心打造</p><p class="icon-desc">用心打造良心工程</p></a>
+		</div></div></div>
+		
+	<div class="footer-box2">
+	   <div class="footer-copy">
+	     <a href="/redianzixun/" target="_blank">资讯中心</a> | 
+             <a href="/tags" target="_blank" title="标签大全">标签大全</a> | 
+	     <a href="/about/" target="_blank" >关于我们</a> | 
+		 <a href="/lianxiwomen/" target="_blank">联系我们</a> |
+		 <a href="/quanguo/"  target="_blank" >全国服务中心</a>|
+		 <a href="/zhaoshangjiameng/"  target="_blank" >招商加盟</a>
+		 
+		 <br><span class="yen"> Copyright©2009-2016  ShuJia365 舒家365网  版权所有</span>
+		 </div>
+ 
+</div>
+
+</body>
+</html>

@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html><head>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?0dcf521975fe845b115cc223da5ad9e6";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="icon" href="/__PUBLIC__/images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/cheer100.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/base.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/sfq.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/lrtk.css">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/city-picker.css">
+	<link href="__PUBLIC__/css/main.css" type="text/css" rel="stylesheet">
+    <script src="__PUBLIC__/js/jquery33.js" type="text/javascript"></script>
+    <script src="__PUBLIC__/js/bbase.js" type="text/javascript"></script>
+	<script type="text/javascript" src="__PUBLIC__/js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/global.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/jquery_002.js"></script>
+
+     <script language="javascript" src="__PUBLIC__/js/procity.js"></script>
+	<script>
+	$(function(){
+		$(window).scroll(function(){
+			if($(window).scrollTop()>100){  //距顶部多少像素时，出现返回顶部按钮
+				$("#side-bar .gotop").fadeIn();	
+			}
+			else{
+				$("#side-bar .gotop").hide();
+			}
+		});
+		$("#side-bar .gotop").click(function(){
+			$('html,body').animate({'scrollTop':0},500); //返回顶部动画 数值越小时间越短
+		});
+	});
+    </script>
+
+<script src="__PUBLIC__/js/iplookup.js" type="text/ecmascript"></script>
+<script type="text/javascript">
+function getIpPlace() {
+var province = remote_ip_info["province"];
+var city = remote_ip_info["city"];
+
+if(province=="北京" || province=="天津" || province=="上海" || province=="重庆"){
+document.write(province);
+}else{
+document.write(city);
+}
+ 
+} 
+
+</script>
+<title>校园二手交易市场</title>
+<meta name="keywords" content="校园二手交易市场">
+<meta name="description" content="校园二手交易市场！">
+<meta name="mobile-agent" content="format=html5; url=http://m.shujia365.com"> </head>
+<body id="bbg" onload="initProvince()">
+
+ <div class="page-top">
+    <div class="w1190">
+        <table class="topMenu">
+            <tbody>
+       
+            <tr>
+            <td id="JS_head_login" class="login"><span>您好，欢迎来校园二手交易市场！</span></td>
+                <td><em class="line"></em></td>
+                <td><a href="">登录</a></td>
+                <td><em class="line"></em></td>
+                <td><a href="{:U('Index/register')}">注册</a></td>
+                <td><em class="line"></em></td>
+                <td><a href="/zhaoshangjiameng/" target="_blank" title="招商加盟" rel="nofollow">招商加盟</a></td>
+                <td><em class="line"></em></td>
+                <td style="width:200px;position:relative;z-index:100;">
+                    服务热线：<span class="hotLine">17730316334</span></td>
+              
+            </tr></tbody>
+
+</table>
+    <ul class="fleft">
+       <li id="citylist">
+       <em></em>
+       <span class="citys">{$mycity.name}<if condition="empty($mycity['name']) eq true"><script type='text/javascript'> getIpPlace();</script></if></span>
+       <a class="qhcs" href="javascript:void(0)" >[切换城市]</a>
+       </li>
+    </ul>
+    <form action="">
+    <div class="city-select">
+        <!-- <div class="city-picker-select"></div> -->
+            <select name="province" id="pro">
+                <option>--请选择省份--</option>
+                <volist name="province" id="v">  
+                <option value="{$v.id}" id="#pro">{$v.name}</option>
+                </volist>  
+            </select>
+            <select name="city" id="city">
+                <option>--请选择市区--</option>
+             <!--    <volist name="city" id="v">  
+                <option value="{$v.name}">{$v.name}</option>
+                </volist>  -->
+            </select>
+        <input type="button" id="city-btn" value="确定">
+    </div>
+    </form>
+    </div>
+</div>
+<script>
+//ajax城市地址联动
+$('#pro').change(function(){
+    $.ajax({
+        url:"{:U('Index/ajaxpro')}",
+        data:'id='+$('#pro').val(),
+        dataType:'json',
+        type:'post',
+        success:function(obj){
+            console.log(obj);
+            $('#city').html(obj);
+        }
+    })
+})
+
+//ajax切换城市
+$('#city-btn').click(function(){
+    $.ajax({
+        url:"{:U('Index/ajaxcity')}",
+        data:'id='+$('#city').val(),
+        dataType:'json',
+        type:'post',
+        success:function(obj){
+            console.log(obj);
+            $('.citys').html(obj);
+        }
+    })
+})
+//ajax清空城市
+$(window).unload(function(){
+     $.ajax({
+        url:"{:U('Index/ajaxdelcity')}",
+     
+    })
+})
+</script>
+<div class="clear"></div>
+<div class="page-header">
+    <div class="w1190 clearfix">
+        <div class="logo left"><a href="/" title="舒家365"><img id="JS_Header_Logo_img" src="__PUBLIC__/picture/logo.png" alt="舒家365"  height="72" width="350"></a></div>
+       
+        <form class="left search_top ifl" action="/e/sch/index.php" method="get" name="schform" id="schform">
+           <div class="search_inner">
+                <button id="searchButton" type="submit" class="submit">搜 索</button >
+                <input name="keyboard" id="searchWords" value="格力中央空调" onBlur="if (value=='') {value='格力中央空调'}" onFocus="if(value=='格力中央空调') {value=''}" class="acInput" type="text">
+            </div>
+            <p>热门搜索：<a href="/zhongyangkongdiao/33-1-0-0-0.html" target="_blank" title="大金中央空调">大金中央空调</a>
+                <a href="/zhongyangkongdiao/33-5-0-0-0.html" target="_blank" title="格力中央空调">格力中央空调</a>
+                <a href="/dinuan/" target="_blank" title="地暖">地暖</a>
+                <a href="/zhongyangxinfeng/" target="_blank" title="新风系统">新风系统</a>
+                <a href="/diyuanrebeng/" target="_blank" title="地源热泵">地源热泵</a>
+            </p>
+        </form>
+       
+
+        <div class="btMap Right clearfix">
+           
+			 <div class="cart Right mymll">
+				<img src="__PUBLIC__/picture/bear.gif" alt="线上报价">
+            </div>
+			 <div class="cart2 Right mymll">
+                <a href="/e/DoInfo/AddInfo.php?classid=2&mid=8&ecmscheck=1" target="_blank" title="舒家365欢迎您" rel="nofollow"><img src="__PUBLIC__/picture/tuangou.jpg" alt="舒家365欢迎您"></a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="daohang">
+<div class="navigation w1190 cfx">
+    <div class="nav_cate">
+        <h3>舒适系统分类</h3>
+        <div class="sub_cate ">
+              <ul class="lv1_ul">
+                    <volist name="lie1" id="v">
+                    <li class="lv1_li menu{$v.id}" id="{$v.id}">
+                        <a class="lv1_a" href="" title="中央空调" target="_blank">{$v.name}</a>
+                        <div class="menu_sub">
+                            <div class="inner cfx">
+                                <div class="menu_sub_list">
+                                    <dl class="tjpt">
+                                        <dt>{$v.names.0}</dt>
+                                        <dd class="lie1">
+                                        </dd>
+                                    </dl>
+
+                                    <dl class="tjpt">
+                                        <dt>{$v.names.1}</dt>
+                                        <dd class="lie2">
+                                        </dd>
+                                    </dl>
+                                      <dl class="tjpt">
+                                        <dt>{$v.names.2}</dt>
+                                        <dd class="lie3">
+                                        </dd>
+                                    </dl>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </volist>
+            </ul>
+        </div>
+    </div>
+    <script>
+    //首页产品列表ajax展示
+    $('.lv1_li').mouseenter(function(){
+        var lid = $(this).attr('id');
+        // alert(lid);
+        $.ajax({
+            url:"{:U('Index/ajaxlie')}",
+            data:'id='+$(this).attr('id'),
+            dataType:'json',
+            type:'post',
+            success:function(obj){
+                // console.log(obj);
+                $('.lie1').html(obj[0]);
+                $('.lie2').html(obj[1]);
+                $('.lie3').html(obj[2]);
+
+            }
+        });
+    });
+    //
+    // alert($('.lv1_a').html());
+    $(function(){
+        var lv = $('.lv1_a').html();
+        var lv1 = lv.split('/');
+        // alert(lv1[0]);
+
+    })
+</script>
+	<div class="nav_menu">
+          <ul>
+            <li><a href="{:U('Index/index')}">首页</a></li>
+            <li class="prd"><b></b><a href="/redianzixun/" target="_blank">舒适攻略</a>
+               <dld class="pa subd dn" style="display: none;">
+                    <dd><a href="/article/" style="background:none;" target="_blank">系统知识</a></dd>
+                    <dd><a href="/zhuanlan/" style="background:none;" target="_blank">文章专栏</a></dd>
+                </dld>
+            </li>
+            <li class="pr"><b></b><a href="/gongchenganli/" target="_blank">工程案例</a>
+                <dl style="display: none;" class="pa sub dn">
+                    <dd><a href="/gongchenganli/kongdiaoanli/" style="background:none;" target="_blank">中央空调</a></dd>
+                    <dd><a href="/gongchenganli/dinuananli/" style="background:none;" target="_blank">地暖案例</a></dd>
+                    <dd><a href="/gongchenganli/diyuanrebenganli/" style="background:none;" target="_blank">地源热泵</a></dd>
+                </dl>
+            </li>
+            
+            <li><a href="/e/DoInfo/AddInfo.php?classid=2&mid=8&ecmscheck=1" target="_blank">免费设计</a><em class="hoot"></em></li>
+            <li><a href="http://www.shujia365.com/zyktpcxg/" target="_blank">干货精华</a><em class="neew"></em></li>
+           <li><a href="/quanguo/" target="_blank"><script type='text/javascript'> getIpPlace();</script>服务中心</a></li>
+        </ul>
+		
+        <script type="text/javascript">
+            $(function(){
+               
+                $('.nav_menu .pr').hover(
+                        function(){
+                            $('dl.sub').show();
+                        },
+                        function(){
+                            $('dl.sub').hide();
+                        }
+                )
+                 $('.nav_menu .prd').hover(
+                        function(){
+                            $('dld.subd').show();
+                        },
+                        function(){
+                            $('dld.subd').hide();
+                        }
+                )
+
+            })
+        </script>
+    </div> 
+     
+</div>
+</div>
