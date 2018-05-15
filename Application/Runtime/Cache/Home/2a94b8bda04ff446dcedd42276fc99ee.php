@@ -71,7 +71,7 @@ document.write(city);
             <tr>
             <td id="JS_head_login" class="login"><span>您好，欢迎来校园二手交易市场！</span></td>
                 <td><em class="line"></em></td>
-                <td><a href="">登录</a></td>
+                <td><a href="<?php echo U('Index/login');?>">登录</a></td>
                 <td><em class="line"></em></td>
                 <td><a href="<?php echo U('Index/register');?>">注册</a></td>
                 <td><em class="line"></em></td>
