@@ -1,9 +1,9 @@
-﻿<!doctype html>
+<?php if (!defined('THINK_PATH')) exit();?>﻿<!doctype html>
 <html>
     <head>
     <meta charset="UTF-8"/>
-        <link href="__PUBLIC__/mls/css/index.css-6f9e6f5a.css" rel="stylesheet" type="text/css"/>
-        <link href="__PUBLIC__/mls/css/index.css-05147aed.css" rel="stylesheet" type="text/css"/>
+        <link href="/ersh/Public/mls/css/index.css-6f9e6f5a.css" rel="stylesheet" type="text/css"/>
+        <link href="/ersh/Public/mls/css/index.css-05147aed.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="body_wrap">
@@ -23,7 +23,7 @@
         <h3 class="pwdsettip">*为了您的账户安全请设置密码</h3>  
         <div class="main_content info_verify_box formbox" id="modelform"> 
             <div class="content_form"> 
-                <form action="{:U('Index/asd')}" method="post" class="formelem">
+                <form action="<?php echo U('Index/asd');?>" method="post" class="formelem">
                 <p class="ui-item validateitem inputbox passwordbox"> 
                 <span class="uname-title">新密码</span> 
                 <input type="password" class="ui-input normalText display_u js_text_input js-pwd" data-type="newpassword" id="pass" placeholder="设置您的密码">
@@ -43,7 +43,7 @@
 <div id="M_PC_footer"></div>
 </body>
 </html>
-<script type="text/javascript" src="__PUBLIC__/js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="/ersh/Public/js/jquery-1.11.1.min.js"></script>
 <script>
    $(function() {
                 // var aStr = ["弱", "中", "强", "牛逼"];
@@ -86,5 +86,3 @@
             })
         </script>
 </script>
-
-

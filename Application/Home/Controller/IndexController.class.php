@@ -89,6 +89,10 @@ class IndexController extends Controller {
             $this->ajaxReturn($data);
         
     }
+    //注册后填写密码
+    public function pass(){
+        $this->display();
+    }
     //登录
     public function login(){
         $this->display();
