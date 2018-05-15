@@ -12,13 +12,13 @@ use Qcloud\Sms\SmsMobileStatusPuller;
 
 class IndexController extends Controller {
 
-	public function _initialize(){
+    public function _initialize(){
         $this->city=D('city');
         $this->province=D('province');
         $this->mycity=D('mycity');
         $this->lie1=D('lieone');
         $this->lie2=D('lietwo');
-	}
+    }
 
     public function index(){
         $province = $this->province->select();
@@ -91,7 +91,17 @@ class IndexController extends Controller {
     }
     //注册后填写密码
     public function pass(){
+        $tel = $_POST['tel'];
+        if(empty($tel)){
+            $this->error();
+        }
+        // V($_POST);
+        $this->assign('tel',$tel);
         $this->display();
+    }
+    //注册处理
+    public function doregister(){
+        V($_POST);
     }
     //登录
     public function login(){
