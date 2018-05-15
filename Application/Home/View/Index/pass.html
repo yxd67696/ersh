@@ -23,14 +23,14 @@
         <h3 class="pwdsettip">*为了您的账户安全请设置密码</h3>  
         <div class="main_content info_verify_box formbox" id="modelform"> 
             <div class="content_form"> 
-                <form action="{:U('Index/asd')}" method="post" class="formelem">
+                <form action="{:U('Index/doregister')}" method="post" class="formelem">
                 <p class="ui-item validateitem inputbox passwordbox"> 
                 <span class="uname-title">新密码</span> 
-                <input type="password" class="ui-input normalText display_u js_text_input js-pwd" data-type="newpassword" id="pass" placeholder="设置您的密码">
+                <input type="hidden" name="tel" value="{$tel}"> 
+                <input type="password" class="ui-input normalText display_u js_text_input js-pwd" data-type="newpassword" id="pass" placeholder="设置您的密码" name="password">
                 <span class="password-complex"></span> 
-                <input type="hidden" class="passComplexLevel"> 
                 <span class="tips display_u"></span> 
-                <span class="newpasslevel error hide">密码需含英文及数字，长度为6位－20位</span> </p>  
+                <span class="newpasslevel error" style="display:none;">密码需含英文及数字，长度为6位－12位</span> </p>  
                 <div class="subbox"> 
                 <button class="confirm_button" id="confirm_button">确认</button> 
                 </div> 
@@ -45,6 +45,7 @@
 </html>
 <script type="text/javascript" src="__PUBLIC__/js/jquery-1.11.1.min.js"></script>
 <script>
+//判断密码强度
    $(function() {
                 // var aStr = ["弱", "中", "强", "牛逼"];
                 function checkStrong(val) {
@@ -84,7 +85,19 @@
                     }
                 })
             })
-        </script>
+//验证密码是否为英文及数字，长度为6位－12位
+$('#confirm_button').click(function(){
+var reg =  new RegExp(/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,12}$/);
+var pass = $('#pass').val();
+var result = reg.test(pass);
+    // alert(result);
+    if(!result){
+        $('.newpasslevel').show();
+        return false;
+    }else{
+       $('#pass').val(''); 
+    }
+})
 </script>
 
 
