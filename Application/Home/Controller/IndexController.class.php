@@ -13,11 +13,17 @@ use Qcloud\Sms\SmsMobileStatusPuller;
 class IndexController extends Controller {
 
     public function _initialize(){
+        session_start();
+        if(!empty($_SESSION['username'])){
+            $this->id = $_SESSION['id'];
+            $this->name = $_SESSION['username'];
+        }
         $this->city=D('city');
         $this->province=D('province');
         $this->mycity=D('mycity');
         $this->lie1=D('lieone');
         $this->lie2=D('lietwo');
+        $this->user=D('user');
     }
 
     public function index(){
@@ -39,7 +45,9 @@ class IndexController extends Controller {
         }
         $this->assign('lie1',$lie1);
         $this->assign('lie2',$lie2);
-
+        //SESSION
+        $this->assign('home_id',$this->id);
+        $this->assign('home_name',$this->name);
      
         $this->display();
     }
@@ -69,7 +77,13 @@ class IndexController extends Controller {
         $phoneNumbers = [$tel];
 
         // 短信模板ID，需要在短信应用中申请
-        $templateId = 121376;  // NOTE: 这里的模板ID`7839`只是一个示例，真实的模板ID需要在短信控制台中申请
+        // $templateId = 121376;  // NOTE: 这里的模板ID`7839`只是一个示例，真实的模板ID需要在短信控制台中申请
+        //判断验证码为注册还是登录选择短信模板，satus=1时为注册，反之为登录
+        if($_POST['status'] == 1){
+            $templateId = 123548;//注册模板
+        }else{
+            $templateId = 123242;//登录模板
+        }
 
         // 签名
         $smsSign = "二手交易平台"; // NOTE: 这里的签名只是示例，请使用真实的已申请的签名，签名参数使用的是`签名内容`，而不是`签名ID`
@@ -80,7 +94,7 @@ class IndexController extends Controller {
         //     $params = [$num];
         //     $result = $ssender->sendWithParam("86", $phoneNumbers[0], $templateId,
         //         $params, $smsSign, "", "");  // 签名参数未提供或者为空时，会使用默认签名发送短信
-        //     $this->ajaxReturn($num);
+        //     $this->ajaxReturn($data);
         //     $rsp = json_decode($result);
         //     echo $result;
         // } catch(\Exception $e) {
@@ -88,6 +102,17 @@ class IndexController extends Controller {
         // }
             $this->ajaxReturn($data);
         
+    }
+    //注册验证手机号是否存在
+    public function AjaxTel(){
+        if(!empty($_POST['tel'])){
+           $tel = $this->user->where('tel='.$_POST['tel'])->find(); 
+        }
+        if(isset($tel)){
+            $this->ajaxReturn(1);
+        }else{
+            $this->ajaxReturn(0);
+        }
     }
     //注册后填写密码
     public function pass(){
@@ -101,11 +126,51 @@ class IndexController extends Controller {
     }
     //注册处理
     public function doregister(){
-        V($_POST);
+        //V($_POST);
+        $tel = $_POST['tel'];
+        $user = $this->user->where('tel='.$tel)->find();
+        $_POST['password'] = md5($_POST['password']);
+        $_POST['username'] = $_POST['tel']; 
+        $this->user->create($_POST);
+        if(!isset($user)){
+            $this->user->add();
+        }
+        $this->display('Index/login');
+
     }
     //登录
     public function login(){
         $this->display();
+    }
+    //ajax登录验证用户名密码
+    public function AjaxLogin(){
+        $where['tel'] = $_POST['userid'];
+        $where['username'] = $_POST['userid'];
+        $where['email'] = $_POST['userid'];
+        $where['_logic'] = 'OR';
+        $user = $this->user->where($where)->find();
+        $pass = md5($_POST['userpass']);
+        if($pass == $user['password']){
+            $this->ajaxReturn(1);
+        }else{
+            $this->ajaxReturn(0);
+        }
+        // $this->ajaxReturn($pass);
+
+    }
+    //登录成功处理
+    public function dologin(){
+
+        $where['tel'] = $_POST['userid'];
+        $where['username'] = $_POST['userid'];
+        $where['email'] = $_POST['userid'];
+        $where['_logic'] = 'OR';
+        $user = $this->user->where($where)->find();
+        // V($user);
+        // exit;
+        $_SESSION['id'] = $user['id'];
+        $_SESSION['username'] = $user['username'];
+        $this->redirect('Index/index');
     }
   
     //ajax城市地址联动
@@ -147,5 +212,22 @@ class IndexController extends Controller {
          }
         $name=array($nama,$namb,$namc);
         $this->ajaxReturn($name);
+    }
+
+    //注销登录
+    public function logout(){
+        //开启session
+        session_start();
+
+        //清空session数组
+        unset($_SESSION);
+
+        //删除session文件
+        session_destroy();
+
+        //删除客户端session id
+        setcookie(session_name(),'',time()-1,'/');
+        header('location:../index');
+
     }
 }
