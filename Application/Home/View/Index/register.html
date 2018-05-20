@@ -35,6 +35,7 @@
                 <p class="error_tip" id="error_phone1" style="display:none;">请输入手机号码</p>
                 <p class="error_tip" id="error_phone2" style="display:none;">请填写正确的手机号</p>
                 <p class="error_tip" id="error_code" style="display:none;">验证码错误</p>
+                <p class="error_tip" id="error_phone3" style="display:none;">该手机号已被注册</p>
                     <input id="userphone" type="text" maxlength="11" data-type="mobile" class="ui-input pwd_text js_phoneInput" name="tel"  placeHolder="手机号码" style="border-color:#CFCFCF;">
                 </div>
                 <div class="ui-sign-item ui-sign-common-item checkword clearfix mb">
@@ -55,7 +56,7 @@
                     </label>
                 </div>
                 <div class="rg_login">
-                    <a href="javascript:void;" class="registerToLogin">< 已有账号登录</a>
+                    <a href="{:U('Index/login')}" class="registerToLogin">< 已有账号登录</a>
                 </div>
             </div>
             </form>
@@ -69,45 +70,65 @@
 <script type="text/javascript" src="__PUBLIC__/js/jquery-1.11.1.min.js"></script>
 <script type="text/javascript">  
 //倒计时+手机验证
-var countdown=60;  
-
+var countdown=60; 
+var flag = true; 
 function settime(val) {  
     var userphone = $('#userphone').val();
     var reg = /^1[3|4|5|7|8][0-9]{9}$/;
-    // alert(reg.test(userphone));
-        if (countdown == 0) {  
-            val.removeAttribute("disabled");  
-            val.innerHTML="获取验证码";  
-            countdown = 60;  
-            return false;  
-        }else if(userphone != '' && reg.test(userphone) == true){
-            val.setAttribute("disabled", true);  
-            val.innerHTML="重新发送(" + countdown + ")";  
-            countdown--; 
-        }else if(userphone == ''){
-            $('#error_phone1').show();
-            return false;  
-        }else{
-            $('#error_phone2').show();
-            return false;  
-        } 
-        setTimeout(function() {  
-            settime(val);  
-        },1000);
-        //手机验证
+    //ajax判断手机号是否存在
+    $.ajax({
+        url:"{:U('Index/AjaxTel')}",
+        data:{tel:userphone},
+        type:'post',
+        dataType:'json',
+        async: false,
+        success:function(data){
+            if(data == 1){
+                $('#error_phone3').show();
+                flag = false; 
+            }else{
+                flag = true; 
+            }
+        }
+        
+    })
+    //全局判断
+    if(!flag){
+        return false;
+    }
+    if (countdown == 0 ) {  
+        val.removeAttribute("disabled");  
+        val.innerHTML="获取验证码";  
+        countdown = 60;  
+        return false;  
+    }else if(userphone != '' && reg.test(userphone) == true ){
+        val.setAttribute("disabled", true);  
+        val.innerHTML="重新发送(" + countdown + ")";  
+        countdown--; 
+    }else if(userphone == ''){
+        $('#error_phone1').show();
+        return false;  
+    }else{
+        $('#error_phone2').show();
+        return false;  
     } 
+    setTimeout(function() {  
+        settime(val);  
+    },1000);
+    //手机验证
+} 
 $('#userphone').focus(function(){
     $('.error_tip').hide();
 });
 $('.getCode').click(function(){
     var userphone = $('#userphone').val();
     var reg = /^1[3|4|5|7|8][0-9]{9}$/;
-    if(userphone == '' || reg.test(userphone) == false){
+    if(userphone == '' || reg.test(userphone) == false || !flag){
         return false;
     }else{
         $.ajax({
             url:"{:U('Index/register_sdk')}",
-            data:{tel:userphone},
+            data:{tel:userphone,status:1},
             type:'post',
             dataType:'json',
             success:function(data){
@@ -128,10 +149,6 @@ $('.getCode').click(function(){
     $('#code').focus(function(){
         $('#error_code').hide();
     })
-
-
-
-
 
 })
 </script>  

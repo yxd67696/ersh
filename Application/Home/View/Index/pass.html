@@ -1,4 +1,4 @@
-﻿<!doctype html>
+﻿﻿<!doctype html>
 <html>
     <head>
     <meta charset="UTF-8"/>
@@ -30,7 +30,7 @@
                 <input type="password" class="ui-input normalText display_u js_text_input js-pwd" data-type="newpassword" id="pass" placeholder="设置您的密码" name="password">
                 <span class="password-complex"></span> 
                 <span class="tips display_u"></span> 
-                <span class="newpasslevel error" style="display:none;">密码需含英文及数字，长度为6位－12位</span> </p>  
+                <span class="newpasslevel error" style="display:none;">密码必须为英文及数字，长度为6位－12位</span> </p>  
                 <div class="subbox"> 
                 <button class="confirm_button" id="confirm_button">确认</button> 
                 </div> 
@@ -67,18 +67,15 @@
                             $('.password-complex').attr('class','password-complex weak');   
                             break;
                         case 1:
+                            $('.password-complex').attr('class','password-complex weak'); 
+                            break;  
                         case 2:
-                            // $('password-complex').attr('class','hide');
-                            $('.password-complex').attr('class','password-complex weak');   
-                            // $('.strong').attr('class','hide');
-                            break;
-                        case 3:
-                            // $('password-complex').attr('class','hide');
                             $('.password-complex').attr('class','password-complex medium');
                             break;
-                        case 4:
-                            // $('.password-complex').attr('class','hide');
+                        case 3:
                             $('.password-complex').attr('class','password-complex strong');
+                            break;
+                        case 4:
                             break;
                         default:
                             break;
@@ -95,7 +92,7 @@ var result = reg.test(pass);
         $('.newpasslevel').show();
         return false;
     }else{
-       $('#pass').val(''); 
+        alert('恭喜你！注册成功，进入登录页面.');
     }
 })
 </script>
